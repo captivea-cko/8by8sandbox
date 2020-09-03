@@ -1,5 +1,5 @@
-# Odoo REST API
-This is a module which expose Odoo as a REST API 
+# Odoo REST API 
+This is a module which expose Odoo as a REST API
 
 
 ## Installing
@@ -12,13 +12,13 @@ This is a module which expose Odoo as a REST API
 Before making any request make sure to login and obtain session_id(This will act as your Authentication token), Send all your requests with session_id as a parameter for authentication. There are two ways to obtain `session_id`, the first one is using `/web/session/authenticate/` route and the second one is using `/auth/` route.
 
 - Using `/web/session/authenticate/` route
-  
+
   Send a POST request with JSON body as shown below.
-  
+
   `POST /web/session/authenticate/`
-  
+
   Request Body
-  
+
   ```js
   {
       "jsonrpc": "2.0",
@@ -29,17 +29,17 @@ Before making any request make sure to login and obtain session_id(This will act
       }
   }
   ```
-  
+
   Obtain `session_id` from a cookie created(Not the one from a response). It'll be a long string something   like "62dd55784cb0b1f69c584f7dc1eea6f587e32570", Then you can use this as a parameter to all requests.
 
 - Using `/auth/` route
 
-  If you have set the default database then you can simply use `/auth` route to do authentication as 
-  
+  If you have set the default database then you can simply use `/auth` route to do authentication as
+
   `POST /auth/`
-  
+
   Request Body
-  
+
   ```js
   {
       "params": {
@@ -49,7 +49,7 @@ Before making any request make sure to login and obtain session_id(This will act
       }
   }
   ```
-  
+
   Use `session_id` from the response as a parameter to all requests.
 
 **Note:** For security reasons, in production don't send `session_id` as a parameter, use a cookie instead.
@@ -83,8 +83,8 @@ data = {
 
 # Authenticate user
 res = requests.post(
-    AUTH_URL, 
-    data=json.dumps(data), 
+    AUTH_URL,
+    data=json.dumps(data),
     headers=headers
 )
 
@@ -103,7 +103,7 @@ USERS_URL = 'http://localhost:8069/api/res.users/'
 params = {'session_id': session_id}
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     params=params
 )
 
@@ -120,7 +120,7 @@ USERS_URL = 'http://localhost:8069/api/product.product/'
 params = {'session_id': session_id, 'query': '{id, name}'}
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     params=params
 )
 
@@ -156,8 +156,8 @@ data = {
 
 # Authenticate user
 res = requests.post(
-    AUTH_URL, 
-    data=json.dumps(data), 
+    AUTH_URL,
+    data=json.dumps(data),
     headers=headers
 )
 
@@ -176,7 +176,7 @@ USERS_URL = 'http://localhost:8069/api/res.users/'
 params = {'session_id': session_id}
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     params=params
 )
 
@@ -193,7 +193,7 @@ USERS_URL = 'http://localhost:8069/api/product.product/'
 params = {'session_id': session_id, 'query': '{id, name}'}
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     params=params
 )
 
@@ -230,8 +230,8 @@ data = {
 
 # Authenticate user
 res = requests.post(
-    AUTH_URL, 
-    data=json.dumps(data), 
+    AUTH_URL,
+    data=json.dumps(data),
     headers=headers
 )
 
@@ -248,7 +248,7 @@ USERS_URL = 'http://localhost:8069/api/res.users/'
 # You can use query param to fetch specific fields
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     cookies=cookies  # Here we are sending cookies instead of `session_id`
 )
 
@@ -265,7 +265,7 @@ USERS_URL = 'http://localhost:8069/api/product.product/'
 params = {'query': '{id, name}'}
 
 res = requests.get(
-    USERS_URL, 
+    USERS_URL,
     params=params,
     cookies=cookies  # Here we are sending cookies instead of `session_id`
 )
@@ -276,14 +276,14 @@ print(res.text)
 </details>
 
 
-## Allowed HTTP methods 
+## Allowed HTTP methods
 
 ## 1. GET
 
-### Model records: 
+### Model records:
 
 `GET /api/{model}/`
-#### Parameters 
+#### Parameters
 * **query (optional):**
 
    This parameter is used to dynamically select fields to include on a response. For example if we want to select `id` and `name` fields from `res.users` model here is how we would do it.
@@ -292,45 +292,45 @@ print(res.text)
 
    ```js
    {
-       "count": 2, 
-       "prev": null, 
-       "current": 1, 
-       "next": null, 
-       "total_pages": 1, 
+       "count": 2,
+       "prev": null,
+       "current": 1,
+       "next": null,
+       "total_pages": 1,
        "result": [
            {
-               "id": 2, 
+               "id": 2,
                "name": "Administrator"
-            }, 
+            },
            {
-               "id": 6, 
+               "id": 6,
                "name": "Reconwajenzi"
             }
         ]
     }
    ```
-   
+
    For nested records, for example if we want to select `id`, `name` and `company_id` fields from `res.users` model, but under `company_id` we want to select `name` field only. here is how we would do it.
 
    `GET /api/res.users/?query={id, name, company_id{name}}`
 
    ```js
    {
-       "count": 2, 
-       "prev": null, 
-       "current": 1, 
-       "next": null, 
-       "total_pages": 1, 
+       "count": 2,
+       "prev": null,
+       "current": 1,
+       "next": null,
+       "total_pages": 1,
        "result": [
            {
-               "id": 2, 
+               "id": 2,
                "name": "Administrator",
                "company_id": {
                    "name": "Singo Africa"
                }
-            }, 
+            },
            {
-               "id": 6, 
+               "id": 6,
                "name": "Reconwajenzi",
                "company_id": {
                    "name": "Singo Africa"
@@ -346,26 +346,26 @@ print(res.text)
 
    ```js
    {
-       "count": 2, 
-       "prev": null, 
-       "current": 1, 
-       "next": null, 
-       "total_pages": 1, 
+       "count": 2,
+       "prev": null,
+       "current": 1,
+       "next": null,
+       "total_pages": 1,
        "result": [
            {
-               "id": 16, 
-               "name": "Alaf Resincot Steel Roof-16", 
+               "id": 16,
+               "name": "Alaf Resincot Steel Roof-16",
                "related_products": [
-                   {"name": "Alloy Steel AISI 4140 Bright Bars - All 5.8 meter longs"}, 
+                   {"name": "Alloy Steel AISI 4140 Bright Bars - All 5.8 meter longs"},
                    {"name": "Test product"}
                 ]
-            }, 
+            },
             {
                 "id": 18,
-                 "name": "Alaf Resincot Steel Roof-43", 
+                 "name": "Alaf Resincot Steel Roof-43",
                  "related_products": [
-                     {"name": "Alloy Steel AISI 4140 Bright Bars - All 5.8 meter longs"}, 
-                     {"name": "Aluminium Sheets & Plates"}, 
+                     {"name": "Alloy Steel AISI 4140 Bright Bars - All 5.8 meter longs"},
+                     {"name": "Aluminium Sheets & Plates"},
                      {"name": "Test product"}
                  ]
             }
@@ -375,19 +375,19 @@ print(res.text)
 
    If you want to fetch all fields except few you can use exclude(-) operator. For example in the case above if we want to fetch all fields except `name` field, here is how we could do it   
    `GET /api/product.template/?query={-name}`
-   
+
    ```js
    {
-        "count": 3, 
-        "prev": null, 
-        "current": 1, 
-        "next": null, 
-        "total_pages": 1, 
+        "count": 3,
+        "prev": null,
+        "current": 1,
+        "next": null,
+        "total_pages": 1,
         "result": [
             {   
                 "id": 1,
                 ... // All fields except name
-            }, 
+            },
             {
                 "id": 2
                 ... // All fields except name
@@ -403,11 +403,11 @@ print(res.text)
 
    ```js
    {
-        "count": 3, 
-        "prev": null, 
-        "current": 1, 
-        "next": null, 
-        "total_pages": 1, 
+        "count": 3,
+        "prev": null,
+        "current": 1,
+        "next": null,
+        "total_pages": 1,
         "result": [
             {   
                 "id": 1,
@@ -417,7 +417,7 @@ print(res.text)
                     ... // All fields except id
                 }
                 ... // All fields
-            }, 
+            },
             ...
         ]
    }
@@ -434,16 +434,16 @@ print(res.text)
 
     ```js
     {
-        "count": 3, 
-        "prev": null, 
-        "current": 1, 
-        "next": null, 
-        "total_pages": 1, 
+        "count": 3,
+        "prev": null,
+        "current": 1,
+        "next": null,
+        "total_pages": 1,
         "result": [
             {
-                "id": 67, 
+                "id": 67,
                 "name": "Crown Paints Economy Superplus Emulsion"
-            }, 
+            },
             {
                 "id": 69,
                 "name": "Crown Paints Permacote"
@@ -460,16 +460,16 @@ print(res.text)
 
     ```js
     {
-        "count": 5, 
-        "prev": 2, 
-        "current": 3, 
-        "next": 4, 
-        "total_pages": 15, 
+        "count": 5,
+        "prev": 2,
+        "current": 3,
+        "next": 4,
+        "total_pages": 15,
         "result": [
-            {"id": 141, "name": "Borewell Slotting Pipes"}, 
-            {"id": 114, "name": "Bright Bars"}, 
-            {"id": 128, "name": "Chain Link Fence"}, 
-            {"id": 111, "name": "Cold Rolled Sheets - CRCA & GI Sheets"}, 
+            {"id": 141, "name": "Borewell Slotting Pipes"},
+            {"id": 114, "name": "Bright Bars"},
+            {"id": 128, "name": "Chain Link Fence"},
+            {"id": 111, "name": "Cold Rolled Sheets - CRCA & GI Sheets"},
             {"id": 62, "name": "Crown Paints Acrylic Primer/Sealer Undercoat"}
         ]
     }
@@ -480,19 +480,19 @@ print(res.text)
 * **limit (optional):**
 
     This is used to limit the number of results returned on a request regardless of pagination. For example
-    
+
     `GET /api/product.template/?query={id, name}&limit=3`
 
     ```js
     {
-        "count": 3, 
-        "prev": null, 
-        "current": 1, 
-        "next": null, 
-        "total_pages": 1, 
+        "count": 3,
+        "prev": null,
+        "current": 1,
+        "next": null,
+        "total_pages": 1,
         "result": [
-            {"id": 16, "name": "Alaf Resincot Steel Roof-16"}, 
-            {"id": 18, "name": "Alaf Resincot Steel Roof-43"}, 
+            {"id": 16, "name": "Alaf Resincot Steel Roof-16"},
+            {"id": 18, "name": "Alaf Resincot Steel Roof-43"},
             {"id": 95, "name": "Alaf versatile steel roof"}
         ]
     }
@@ -510,7 +510,7 @@ print(res.text)
 
     ```js
     {
-        "id": 95, 
+        "id": 95,
         "name": "Alaf versatile steel roof"
     }
     ```
@@ -521,11 +521,11 @@ print(res.text)
 `POST /api/{model}/`
 #### Headers
 * Content-Type: application/json
-#### Parameters 
+#### Parameters
 * **data (mandatory):**
 
     This is used to pass data to be posted. For example
-    
+
     `POST /api/product.public.category/`
 
     Request Body
@@ -577,7 +577,7 @@ print(res.text)
 
 ## 3. PUT
 
-### Model records: 
+### Model records:
 
 `PUT /api/{model}/`
 #### Headers
@@ -643,7 +643,7 @@ print(res.text)
 
 * **operation (optional)**:
 
-    This is only applied to `one2many` and `many2many` fields. The concept is sometimes you might not want to replace all records on either `one2many` or `many2many` fields, instead you might want to add other records or remove some records, this is where put operations comes in place. Thre are basically three PUT operations which are push, pop and delete. 
+    This is only applied to `one2many` and `many2many` fields. The concept is sometimes you might not want to replace all records on either `one2many` or `many2many` fields, instead you might want to add other records or remove some records, this is where put operations comes in place. Thre are basically three PUT operations which are push, pop and delete.
     * push is used to add/append other records to existing linked records
     * pop is used to remove/unlink some records from the record being updated but it doesn't delete them on the system
     * delete is used to remove/unlink and delete records permanently on the system
@@ -683,7 +683,7 @@ print(res.text)
     }
     ```
 
-### Model record: 
+### Model record:
 
 `PUT /api/{model}/{id}`
 #### Headers
@@ -715,7 +715,7 @@ Request Body
 
 ## 4. DELETE
 
-### Model records: 
+### Model records:
 
 `DELETE /api/{model}/`
 #### Parameters
@@ -732,11 +732,11 @@ Request Body
         "result": true
     }
     ```
-    
+
     Note: If the result is true it means success and if false or otherwise it means there was an error during deletion.
 
 
-### Model records: 
+### Model records:
 
 `DELETE /api/{model}/{id}`
 #### Parameters
