@@ -32,10 +32,6 @@
         'demo/demo.xml',
     ],
 
-    'qweb': [
-        'static/src/xml/systray.xml',
-    ],
-
     "application": True,
     "installable": True,
     "auto_install": False,
