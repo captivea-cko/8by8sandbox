@@ -10,7 +10,6 @@ from odoo.http import request
 from .serializers import Serializer
 from .exceptions import QueryFormatError
 
-
 _logger = logging.getLogger(__name__)
 
 
@@ -167,6 +166,7 @@ class OdooAPI(http.Controller):
 
         try:
             serializer = Serializer(records, query, many=True)
+            _logger.error(records)
             data = serializer.data
         except (SyntaxError, QueryFormatError) as e:
             res = error_response(e, e.msg)
@@ -483,4 +483,123 @@ class OdooAPI(http.Controller):
             src = False
         return http.Response(
             src
+        )
+
+    @http.route(
+        '/api8x8/phonenumber/<string:model>',
+        type='http', auth='user', methods=['GET'], csrf=False)
+    def get_model_data2(self, model, **params):
+        try:
+            records = request.env[model].search([])
+        except KeyError as e:
+            msg = "The model `%s` does not exist." % model
+            res = error_response(e, msg)
+            return http.Response(
+                json.dumps(res),
+                status=200,
+                mimetype='application/json'
+            )
+
+        if "query" in params:
+            query = params["query"]
+        else:
+            query = "{*}"
+
+        if "order" in params:
+            orders = json.loads(params["order"])
+        else:
+            orders = ""
+
+        if "filter" in params:
+            filters = json.loads(params["filter"])
+
+        tableName = model.replace('.', '_')
+
+        whereQuery = []
+        for field, operator, value in filters:
+            if (value.isnumeric() == False):
+                return http.Response(
+                    json.dumps("The filter field `%s` is not numeric." % field),
+                    status=200,
+                    mimetype='application/json'
+                )
+
+            operators = ['contains', 'is']
+            strOperators = '`, `'.join(operators)
+            if operator not in operators:
+                return http.Response(
+                    json.dumps("The operator for `%s` is not `%s`." % (field,strOperators)),
+                    status=200,
+                    mimetype='application/json'
+                )
+
+            if operator == 'contains':
+                value = '%{}%'.format(value)
+                operator = 'like'
+            elif operator == 'is':
+                operator = '='
+
+            whereQuery.append("regexp_replace({}, '[^0-9]+', '', 'g') {} '{}'".format(field, operator, value))
+
+        if len(whereQuery):
+            where = ' OR '.join(whereQuery)
+            rawQuery = "SELECT id FROM {} WHERE {}".format(tableName, where)
+            request._cr.execute(rawQuery)
+            found = request._cr.fetchall()
+        else:
+            found = [0]
+
+        records = request.env[model].search([['id', 'in', found]], order=orders)
+
+        prev_page = None
+        next_page = None
+        total_page_number = 1
+        current_page = 1
+
+        if "page_size" in params:
+            page_size = int(params["page_size"])
+            count = len(records)
+            total_page_number = math.ceil(count/page_size)
+
+            if "page" in params:
+                current_page = int(params["page"])
+            else:
+                current_page = 1  # Default page Number
+            start = page_size*(current_page-1)
+            stop = current_page*page_size
+            records = records[start:stop]
+            next_page = current_page+1 \
+                if 0 < current_page + 1 <= total_page_number \
+                else None
+            prev_page = current_page-1 \
+                if 0 < current_page - 1 <= total_page_number \
+                else None
+
+        if "limit" in params:
+            limit = int(params["limit"])
+            records = records[0:limit]
+
+        try:
+            serializer = Serializer(records, query, many=True)
+            data = serializer.data
+        except (SyntaxError, QueryFormatError) as e:
+            res = error_response(e, e.msg)
+            return http.Response(
+                json.dumps(res),
+                status=200,
+                mimetype='application/json'
+            )
+
+        res = {
+            "count": len(records),
+            "prev": prev_page,
+            "current": current_page,
+            "next": next_page,
+            "total_pages": total_page_number,
+            "result": data
+        }
+        return http.Response(
+            json.dumps(res),
+            status=200,
+            mimetype='application/json'
         )
