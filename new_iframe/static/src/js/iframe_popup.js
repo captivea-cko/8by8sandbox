@@ -22,6 +22,7 @@ const IframePopup = Widget.extend({
     async start() {
 
         this.$el.css('bottom', 0);
+        this.$el.css('right', 0);
         this.$el.show();
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);
@@ -42,7 +43,6 @@ const IframePopup = Widget.extend({
     },
 
 });
-alert('Iframe popup loaded and returning')
 return IframePopup;
 
 });
