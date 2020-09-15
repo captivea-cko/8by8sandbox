@@ -17,7 +17,7 @@
 </li>
 
 <div
-    t-name="iframe_popup" style="display:none;">
+    t-name="iframe_popup" class="iframe">
     <iframe src="https://fr.wikipedia.org/wiki/Main_Page" width="300" height="480" ></iframe>
 </div>
 

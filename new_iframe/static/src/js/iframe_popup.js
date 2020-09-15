@@ -23,7 +23,7 @@ const IframePopup = Widget.extend({
 
         this.$el.css('bottom', 0);
         this.$el.css('right', 0);
-        this.$el.show();
+        this.$el.hide();
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);
 
