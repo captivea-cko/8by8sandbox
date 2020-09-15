@@ -13,7 +13,7 @@ if (config.device.isMobile) {
     return;
 }
 
-const SystrayVoipMenu = Widget.extend({
+const SystrayIFrameMenu = Widget.extend({
     name: 'iframe',
     template: 'show_iframe',
     events: {
@@ -31,7 +31,7 @@ const SystrayVoipMenu = Widget.extend({
 });
 
 // Insert the Voip widget button in the systray menu
-SystrayMenu.Items.push(SystrayVoipMenu);
+SystrayMenu.Items.push(SystrayIFrameMenu);
 
 return SystrayVoipMenu;
 
