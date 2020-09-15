@@ -4,7 +4,7 @@
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/new_iframe/static/src/js/systray_iframe.js"></script>
             <script type="text/javascript" src="/new_iframe/static/src/js/iframe_popup.js"></script>
-            <script type="text/javascript" src="/new_iframe/static/src/js/systray_iframe.js"></script>
+            <script type="text/javascript" src="/new_iframe/static/src/js/iframe_web_client.js"></script>
             <script type="text/javascript" src="/new_iframe/static/src/js/test.js"></script>
 
         </xpath>
