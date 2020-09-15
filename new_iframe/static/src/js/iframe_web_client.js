@@ -1,7 +1,7 @@
 odoo.define('iframe_webclient', function (require) {
 "use strict";
 
-const IframePopup = require('IframePopup');
+const IframePopup = require('iframe_popup');
 
 const config = require('web.config');
 const WebClient = require('web.WebClient');
