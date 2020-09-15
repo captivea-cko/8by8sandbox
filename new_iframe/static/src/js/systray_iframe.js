@@ -20,6 +20,15 @@ const SystrayIFrameMenu = Widget.extend({
         'click': '_onClick',
     },
 
+    // TODO remove and replace with session_info mechanism
+    /**
+     * @override
+     */
+    async willStart() {
+        const _super = this._super.bind(this, ...arguments); // limitation of class.js
+        return _super();
+    },
+
     /**
      * @private
      * @param {MouseEvent} ev
