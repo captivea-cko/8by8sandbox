@@ -22,7 +22,7 @@ const IframePopup = Widget.extend({
      */
     init() {
         this._super(...arguments);
-
+    },
     /**
      * @override
      */
