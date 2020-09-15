@@ -25,6 +25,7 @@ WebClient.include({
         await this._super(...arguments);
         this._iframe = new IframePopup(this);
         await this._iframe.appendTo(this.$el);
+        alert('Webclient loaded and iframe added')
     },
 
 });

@@ -42,7 +42,7 @@ const IframePopup = Widget.extend({
     },
 
 });
-
+alert('Iframe popup loaded and returning')
 return IframePopup;
 
 });
