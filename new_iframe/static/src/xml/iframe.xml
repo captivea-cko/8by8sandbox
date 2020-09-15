@@ -14,7 +14,7 @@
                 fa-grav"
             role="img"/>
     </a>
-    <div class="iframe"
+    <div class="iframe" style="display:none;"
         t-name="iframe_popup">
         <iframe src="https://fr.wikipedia.org/wiki/Main_Page" width="300" height="480" ></iframe>
     </div>
