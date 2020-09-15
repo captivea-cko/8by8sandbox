@@ -26,6 +26,7 @@ const SystrayIFrameMenu = Widget.extend({
      */
     _onClick(ev) {
         ev.preventDefault();
+        this.$('.iframe').show();
         core.bus.trigger('toggle_iframe');
     },
 });
