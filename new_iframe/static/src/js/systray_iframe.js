@@ -26,7 +26,6 @@ const SystrayVoipMenu = Widget.extend({
      */
     _onClick(ev) {
         ev.preventDefault();
-        alert('hey')
         core.bus.trigger('toggle_iframe');
     },
 });
