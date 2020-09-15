@@ -33,6 +33,6 @@ const SystrayIFrameMenu = Widget.extend({
 // Insert the Voip widget button in the systray menu
 SystrayMenu.Items.push(SystrayIFrameMenu);
 
-return SystrayVoipMenu;
+return SystrayIFrameMenu;
 
 });
