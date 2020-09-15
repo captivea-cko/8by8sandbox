@@ -7,42 +7,40 @@ const config = require('web.config');
 const realSession = require('web.session');
 const Widget = require('web.Widget');
 
+// As voip is not supported on mobile devices,
+// we want to keep the standard phone widget
+if (config.device.isMobile) {
+    return;
+}
+
 const IframePopup = Widget.extend({
     template: 'iframe_popup',
     events: {  },
+
     /**
      * @constructor
      */
     init() {
-      this._isClosed = true;
+        this._super(...arguments);
     },
     /**
      * @override
      */
     async start() {
 
-        this.$el.css('bottom', 0);
-        this.$el.show();
+        this.$el.hide();
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);
 
-        this.call('bus_service', 'onNotification', this, this._onLongpollingNotifications);
+        //this.call('bus_service', 'onNotification', this, this._onLongpollingNotifications);
     },
 
     toggleIframe() {
-      if (this._isClosed) {
-        this.$el.show();
-        this._isClosed = false;
-      }
-      else {
-        this.$el.hide();
-        this._isClosed = true;
-      }
+      this.$el.toggle();
 
     },
 
 });
-
 return IframePopup;
 
 });
