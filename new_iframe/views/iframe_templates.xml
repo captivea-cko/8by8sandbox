@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="iframe assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/new_iframe/static/src/js/systray_iframe.js"></script>
+            <script type="text/javascript" src="/new_iframe/static/src/js/iframe_popup.js"></script>
+
+        </xpath>
+    </template>
+
+</odoo>

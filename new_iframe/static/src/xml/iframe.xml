@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<li
+    t-name="show_iframe">
+    <a
+        href="#"
+        title="Toggle iframe">
+        <i
+            aria-label="Toggle iframe"
+            class="
+                fa
+                fa-fw
+                fa-grav"
+            role="img"/>
+    </a>
+</li>
+
+<div
+    t-name="iframe_popup">
+    <iframe src="https://fr.wikipedia.org/wiki/Main_Page" width="300" height="480" ></iframe>
+</div>
+
+
+</templates>
