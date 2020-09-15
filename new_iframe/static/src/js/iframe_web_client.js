@@ -28,5 +28,4 @@ WebClient.include({
     },
 
 });
-return WebClient;
 });
