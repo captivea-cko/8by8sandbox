@@ -18,7 +18,7 @@
 
 <div
     t-name="iframe_popup" class="iframe o_in_home_menu">
-    <iframe src="https://cloud8-staging.8x8.com/mapanelweb/public/index.html?companel=vo&env=oneinn&fullContext=true" width="30" height="48" ></iframe>
+    <iframe src="https://fr.wikipedia.org/wiki/Main_Page" width="300" height="480" ></iframe>
 </div>
 
 
