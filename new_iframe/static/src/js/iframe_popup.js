@@ -21,8 +21,6 @@ const IframePopup = Widget.extend({
      * @constructor
      */
     init() {
-        console.log('Checkpoint');
-        console.log(this.$el);
         this._super(...arguments);
     },
     /**
@@ -31,6 +29,8 @@ const IframePopup = Widget.extend({
     async start() {
 
         this.$el.hide();
+        console.log('Checkpoint');
+        console.log(this.$el);
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);
 
