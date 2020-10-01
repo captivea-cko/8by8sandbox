@@ -21,6 +21,8 @@ const IframePopup = Widget.extend({
      * @constructor
      */
     init() {
+        console.log('Checkpoint');
+        console.log(this.$el);
         this._super(...arguments);
     },
     /**
