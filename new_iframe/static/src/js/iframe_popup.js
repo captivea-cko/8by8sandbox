@@ -31,6 +31,7 @@ const IframePopup = Widget.extend({
         this.$el.hide();
         this.$el.find('iframe')
           .first()
+          // TODO change to dynamic link settings
           .attr('src', 'https://cloud8-staging.8x8.com/mapanelweb/public/index.html?companel=vo&env=oneinn&fullContext=false')
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);

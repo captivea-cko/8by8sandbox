@@ -18,7 +18,7 @@
 
 <div
     t-name="iframe_popup" class="iframe o_in_home_menu">
-    <iframe src="https://cloud8-staging.8x8.com/mapanelweb/public/index.html" width="300" height="480" ></iframe>
+    <iframe src="https://cloud8-staging.8x8.com/mapanelweb/public/index.html"></iframe>
 </div>
 
 
