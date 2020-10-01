@@ -18,6 +18,7 @@ const SystrayIFrameMenu = Widget.extend({
     template: 'show_iframe',
     events: {
         'click': '_onClick',
+        'load': '_onLoad',
     },
 
     // TODO remove and replace with session_info mechanism
@@ -37,6 +38,15 @@ const SystrayIFrameMenu = Widget.extend({
         ev.preventDefault();
         this.$('.iframe').toggle();
         core.bus.trigger('toggle_iframe');
+    },
+
+    /**
+     * @private
+     * @param {} ev
+     */
+    _onLoad(ev) {
+        alert('Testing if onload event exists');
+        console.log(ev);
     },
 });
 
