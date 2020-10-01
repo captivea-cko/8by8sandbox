@@ -29,8 +29,9 @@ const IframePopup = Widget.extend({
     async start() {
 
         this.$el.hide();
-        console.log('Checkpoint');
-        console.log(this.$el);
+        this.$el.find('iframe')
+          .first()
+          .attr('src', 'https://cloud8-staging.8x8.com/mapanelweb/public/index.html?companel=vo&env=oneinn&fullContext=false')
 
         core.bus.on('toggle_iframe', this, this.toggleIframe);
 
