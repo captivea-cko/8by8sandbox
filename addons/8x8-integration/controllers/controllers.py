@@ -36,11 +36,11 @@ class OdooAPI(http.Controller):
         '/getsession/',
         type='http', auth='none', methods=["GET"], csrf=False)
     def getsession(self):
-        session_details = requests.get(url=odoo_url + '/web/session/authenticate', data=json.dumps(data_string), headers=headers)
-        session_id = str(session_details.cookies.get('session_id'))
+        # session_details = requests.get(url=odoo_url + '/web/session/authenticate', data=json.dumps(data_string), headers=headers)
+        # session_id = str(session_details.cookies.get('session_id'))
 
         return http.Response(
-            json.dumps([request.session, session_id]),
+            json.dumps([request.session, request.session.sid]),
             status=200,
             mimetype='application/json'
         )
