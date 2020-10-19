@@ -37,6 +37,6 @@
     "auto_install": False,
 
     'external_dependencies': {
-        'python': ['requests']
+        'python': ['pypeg2', 'requests']
     }
 }
