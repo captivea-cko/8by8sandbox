@@ -36,7 +36,11 @@ class OdooAPI(http.Controller):
         '/getsession/',
         type='http', auth='none', methods=["GET"], csrf=False)
     def getsession(self):
-        return request.session.uid
+        return http.Response(
+            json.dumps(request.session),
+            status=200,
+            mimetype='application/json'
+        )
 
 
     @http.route(
