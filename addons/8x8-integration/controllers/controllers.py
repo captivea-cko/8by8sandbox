@@ -33,6 +33,15 @@ def error_response(error, msg):
 
 class OdooAPI(http.Controller):
     @http.route(
+        '/getsession/',
+        type='json', auth='none', methods=["GET"], csrf=False)
+    def getsession(self):
+        request.uid = request.session.uid
+        request.disable_db = False
+        return self.session_info()
+
+
+    @http.route(
         '/auth/',
         type='json', auth='none', methods=["POST"], csrf=False)
     def authenticate(self, *args, **post):
