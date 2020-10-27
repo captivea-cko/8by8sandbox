@@ -501,8 +501,8 @@ class OdooAPI(http.Controller):
 
     @http.route(
         '/api8x8/phonenumber/<string:model>',
-        type='http', auth='user', methods=['POST'], csrf=False)
-    def get_model_by_phonenumber_data(self, model, **params):
+        type='json', auth='user', methods=['POST'], csrf=False)
+    def get_model_by_phonenumber_data(self, model, **post):
         try:
             records = request.env[model].search([])
         except KeyError as e:
@@ -514,18 +514,18 @@ class OdooAPI(http.Controller):
                 mimetype='application/json'
             )
 
-        if "query" in params:
-            query = params["query"]
+        if "query" in post:
+            query = post["query"]
         else:
             query = "{*}"
 
-        if "order" in params:
-            orders = json.loads(params["order"])
+        if "order" in post:
+            orders = json.loads(post["order"])
         else:
             orders = ""
 
-        if "filter" in params:
-            filters = json.loads(params["filter"])
+        if "filter" in post:
+            filters = json.loads(post["filter"])
 
         tableName = model.replace('.', '_')
 
@@ -570,13 +570,13 @@ class OdooAPI(http.Controller):
         total_page_number = 1
         current_page = 1
 
-        if "page_size" in params:
-            page_size = int(params["page_size"])
+        if "page_size" in post:
+            page_size = int(post["page_size"])
             count = len(records)
             total_page_number = math.ceil(count/page_size)
 
-            if "page" in params:
-                current_page = int(params["page"])
+            if "page" in post:
+                current_page = int(post["page"])
             else:
                 current_page = 1  # Default page Number
             start = page_size*(current_page-1)
@@ -589,8 +589,8 @@ class OdooAPI(http.Controller):
                 if 0 < current_page - 1 <= total_page_number \
                 else None
 
-        if "limit" in params:
-            limit = int(params["limit"])
+        if "limit" in post:
+            limit = int(post["limit"])
             records = records[0:limit]
 
         try:
