@@ -520,12 +520,12 @@ class OdooAPI(http.Controller):
             query = "{*}"
 
         if "order" in post:
-            orders = json.loads(post["order"])
+            orders = post["order"]
         else:
             orders = ""
 
         if "filter" in post:
-            filters = json.loads(post["filter"])
+            filters = post["filter"]
 
         tableName = model.replace('.', '_')
 
