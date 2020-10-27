@@ -506,11 +506,9 @@ class OdooAPI(http.Controller):
         try:
             records = request.env[model].search([])
         except KeyError as e:
-            msg = "The model `%s` does not exist." % model
-            res = error_response(e, msg)
             return http.Response(
-                json.dumps(res),
-                status=200,
+                json.dumps("The model `%s` does not exist." % model),
+                status=400,
                 mimetype='application/json'
             )
 
@@ -534,7 +532,7 @@ class OdooAPI(http.Controller):
             if (value.isnumeric() == False):
                 return http.Response(
                     json.dumps("The filter field `%s` is not numeric." % field),
-                    status=200,
+                    status=400,
                     mimetype='application/json'
                 )
 
@@ -543,7 +541,7 @@ class OdooAPI(http.Controller):
             if operator not in operators:
                 return http.Response(
                     json.dumps("The operator for `%s` is not `%s`." % (field,strOperators)),
-                    status=200,
+                    status=400,
                     mimetype='application/json'
                 )
 
@@ -597,10 +595,10 @@ class OdooAPI(http.Controller):
             serializer = Serializer(records, query, many=True)
             data = serializer.data
         except (SyntaxError, QueryFormatError) as e:
-            res = error_response(e, e.msg)
+            # res = error_response(e, e.msg)
             return http.Response(
-                json.dumps(res),
-                status=200,
+                json.dumps("Json parsing error"),
+                status=400,
                 mimetype='application/json'
             )
 
