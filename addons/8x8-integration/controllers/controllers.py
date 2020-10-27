@@ -501,8 +501,8 @@ class OdooAPI(http.Controller):
 
     @http.route(
         '/api8x8/phonenumber/<string:model>',
-        type='http', auth='user', methods=['GET'], csrf=False)
-    def get_model_data2(self, model, **params):
+        type='http', auth='user', methods=['POST'], csrf=False)
+    def get_model_by_phonenumber_data(self, model, **params):
         try:
             records = request.env[model].search([])
         except KeyError as e:
