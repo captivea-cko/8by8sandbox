@@ -40,7 +40,7 @@ class OdooAPI(http.Controller):
         # session_id = str(session_details.cookies.get('session_id'))
 
         return http.Response(
-            json.dumps(request.session),
+            json.dumps(self.env),
             status=200,
             mimetype='application/json'
         )
@@ -123,7 +123,7 @@ class OdooAPI(http.Controller):
 
     @http.route(
         '/api/<string:model>',
-        type='http', auth='user', methods=['GET'], csrf=False)
+        type='http', auth='user', methods=['GET'], csrf=True)
     def get_model_data(self, model, **params):
         try:
             records = request.env[model].search([])
@@ -523,12 +523,19 @@ class OdooAPI(http.Controller):
             orders = ""
 
         if "filter" in post:
-            filters = post["filter"]
+            filters = json.loads(post["filter"])
+        else:
+            filters = []
+
+        if "phone" in post:
+            phones = json.loads(post["phone"])
+        else:
+            phones = []
 
         tableName = model.replace('.', '_')
 
         whereQuery = []
-        for field, operator, value in filters:
+        for field, operator, value in phones:
             if (value.isnumeric() == False):
                 return http.Response(
                     json.dumps("The filter field `%s` is not numeric." % field),
@@ -540,7 +547,7 @@ class OdooAPI(http.Controller):
             strOperators = '`, `'.join(operators)
             if operator not in operators:
                 return http.Response(
-                    json.dumps("The operator for `%s` is not `%s`." % (field,strOperators)),
+                    json.dumps("The operator for `%s` is not `%s`." % (field, strOperators)),
                     status=400,
                     mimetype='application/json'
                 )
@@ -558,10 +565,9 @@ class OdooAPI(http.Controller):
             rawQuery = "SELECT id FROM {} WHERE {}".format(tableName, where)
             request._cr.execute(rawQuery)
             found = request._cr.fetchall()
-        else:
-            found = [0]
+            filters.append(['id', 'in', found])
 
-        records = request.env[model].search([['id', 'in', found]], order=orders)
+        records = request.env[model].search(filters, order=orders)
 
         prev_page = None
         next_page = None
@@ -608,10 +614,13 @@ class OdooAPI(http.Controller):
             "current": current_page,
             "next": next_page,
             "total_pages": total_page_number,
-            "result": data
+            "result": data,
+            "testrecords": records
         }
-        return http.Response(
-            json.dumps(res),
-            status=200,
-            mimetype='application/json'
-        )
+
+        return res
+#         return http.Response(
+#             'Fuckd!',
+#             status=200,
+#             mimetype='application/json'
+#         )
