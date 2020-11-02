@@ -40,7 +40,7 @@ class OdooAPI(http.Controller):
         # session_id = str(session_details.cookies.get('session_id'))
 
         return http.Response(
-            json.dumps(self.env),
+            json.dumps(request.session.sid),
             status=200,
             mimetype='application/json'
         )
