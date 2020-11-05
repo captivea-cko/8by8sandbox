@@ -11,14 +11,17 @@
             class="
                 fa
                 fa-fw
-                fa-grav"
+                fa-phone"
             role="img"/>
     </a>
 </li>
 
 <div
-    t-name="iframe_popup" class="iframe o_in_home_menu">
-    <iframe src="https://cloud8-staging.8x8.com/mapanelweb/public/index.html"></iframe>
+    t-name="iframe_popup" class="iframe o_in_home_menu" draggable="true" style="cursor:move;">
+    <div class="modal-body" style="padding-top: 1px; padding-bottom: 1px; overflow: hidden;">
+        <a href="#" class="o_popup_btn_close o_not_editable o_default_snippet_text pull-right" data-dismiss="modal" style="font-size:1.5em">×</a>
+    </div>
+    <iframe></iframe>
 </div>
 
 
