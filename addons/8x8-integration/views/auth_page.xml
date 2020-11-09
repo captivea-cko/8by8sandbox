@@ -7,19 +7,21 @@
              <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
             </xpath>
             <div class="container h-100">
-              <div class="text-center">
+
                 <div class="row">
-                  <h1>Authorize 8x8?</h1>
-                </div>
-                <div class="row">
-                  <div class="col-md p-40">
-                    <button type="button" class="btn btn-primary">Allow</button>
-                  </div>
-                  <div class="col-md p-40">
-                    <button type="button" class="btn btn-secondary">Deny</button>
+                  <div class="col-lg text-center">
+                    <h1>Authorize 8x8?</h1>
                   </div>
                 </div>
-            </div>
+                <div class="row">
+                  <div class="col-md">
+                    <button type="button" class="btn btn-primary p-5">Allow</button>
+                  </div>
+                  <div class="col-md">
+                    <button type="button" class="btn btn-secondary p-5">Deny</button>
+                  </div>
+                </div>
+
 
             </div>
          </template>
