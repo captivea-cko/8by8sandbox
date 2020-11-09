@@ -17,10 +17,10 @@
                   <div class="col-md">
                   </div>
                   <div class="col-md">
-                    <button type="button" class="btn btn-primary p-5">Allow</button>
+                    <button type="button" class="btn btn-primary p-3">Allow</button>
                   </div>
                   <div class="col-md">
-                    <button type="button" class="btn btn-secondary p-5">Deny</button>
+                    <button type="button" class="btn btn-secondary p-3">Deny</button>
                   </div>
                   <div class="col-md">
                   </div>
