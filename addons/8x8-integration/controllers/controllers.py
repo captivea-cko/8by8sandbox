@@ -33,6 +33,10 @@ def error_response(error, msg):
 
 
 class OdooAPI(http.Controller):
+    @http.route('/auth_page', type='http', auth='none')
+    def index(self, **kw):
+        return http.request.render("8x8-integration.auth_page")
+
     @http.route(
         '/getsession/',
         type='http', auth='none', methods=["GET"], csrf=False)

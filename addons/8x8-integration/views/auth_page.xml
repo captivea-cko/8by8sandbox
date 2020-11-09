@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+
+
+         <template id="auth_page" name="Auth Page">
+
+            <div class="container" style="padding-top:30px">
+              <div class="row">
+                <h1>Authorize 8x8?</h1>
+              </div>
+              <div class="row">
+                <div class="col-md">
+                  <button type="button" class="btn btn-primary">Allow</button>
+                </div>
+                <div class="col-md">
+                  <button type="button" class="btn btn-secondary">Deny</button>
+                </div>
+
+
+            </div>
+
+         </template>
+
+    </data>
+</odoo>
