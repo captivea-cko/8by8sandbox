@@ -3,6 +3,9 @@
 
 
          <template id="auth_page" name="Auth Page">
+           <xpath expr="//head" position="inside">
+             <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+            </xpath>
             <div class="container" style="padding-top:30px">
               <div class="row">
                 <h1>Authorize 8x8?</h1>
