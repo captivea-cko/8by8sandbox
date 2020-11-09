@@ -8,7 +8,7 @@
             </xpath>
             <div class="container h-100">
 
-                <div class="row">
+                <div class="row pt-100">
                   <div class="col-lg text-center">
                     <h1>Authorize 8x8?</h1>
                   </div>
@@ -17,10 +17,14 @@
                   <div class="col-md">
                   </div>
                   <div class="col-md">
-                    <button type="button" class="btn btn-primary p-3">Allow</button>
-                  </div>
-                  <div class="col-md">
-                    <button type="button" class="btn btn-secondary p-3">Deny</button>
+                    <div class="row">
+                      <div class="col-sm text-center">
+                        <button type="button" class="btn btn-primary p-3">Allow</button>
+                      </div>
+                      <div class="col-sm text-center">
+                        <button type="button" class="btn btn-secondary p-3">Deny</button>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md">
                   </div>
