@@ -1,7 +1,5 @@
 <odoo>
     <data>
-
-
          <template id="auth_page" name="Auth Page">
            <xpath expr="//head" position="inside">
              <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
@@ -19,20 +17,21 @@
                   <div class="col-md">
                     <div class="row">
                       <div class="col-sm text-center">
+                        <a href="#">
                         <button type="button" class="btn btn-primary p-3">Allow</button>
+                        </a>
                       </div>
                       <div class="col-sm text-center">
+                        <a href="javascript:close_window();">
                         <button type="button" class="btn btn-secondary p-3">Deny</button>
+                        </a>
                       </div>
                     </div>
                   </div>
                   <div class="col-md">
                   </div>
                 </div>
-
-
             </div>
          </template>
-
     </data>
 </odoo>
