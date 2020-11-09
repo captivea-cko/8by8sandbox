@@ -8,12 +8,12 @@
             </xpath>
             <div class="container h-100">
 
-                <div class="row pt-100">
+                <div class="row" style="padding-top:100px">
                   <div class="col-lg text-center">
                     <h1>Authorize 8x8?</h1>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" style="padding-top:15px">
                   <div class="col-md">
                   </div>
                   <div class="col-md">
