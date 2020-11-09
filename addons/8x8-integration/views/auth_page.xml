@@ -22,7 +22,7 @@
                         </a>
                       </div>
                       <div class="col-sm text-center">
-                        <a href="javascript:close_window();">
+                        <a href="javascript:close();">
                         <button type="button" class="btn btn-secondary p-3">Deny</button>
                         </a>
                       </div>
