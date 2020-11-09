@@ -3,7 +3,7 @@
 
 
          <template id="auth_page" name="Auth Page">
-
+          <t t-call="website.layout">
             <div class="container" style="padding-top:30px">
               <div class="row">
                 <h1>Authorize 8x8?</h1>
@@ -18,7 +18,7 @@
 
 
             </div>
-
+          </t>
          </template>
 
     </data>
