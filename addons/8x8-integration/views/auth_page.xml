@@ -6,8 +6,8 @@
            <xpath expr="//head" position="inside">
              <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
             </xpath>
-            <div class="container w-100">
-              <div class="align-middle w-50">
+            <div class="container h-100">
+              <div class="d-flex align-items-center justify-content-center w-50 h-50">
                 <div class="row" >
                   <h1>Authorize 8x8?</h1>
                 </div>
