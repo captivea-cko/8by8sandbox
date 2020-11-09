@@ -15,10 +15,14 @@
                 </div>
                 <div class="row">
                   <div class="col-md">
+                  </div>
+                  <div class="col-md">
                     <button type="button" class="btn btn-primary p-5">Allow</button>
                   </div>
                   <div class="col-md">
                     <button type="button" class="btn btn-secondary p-5">Deny</button>
+                  </div>
+                  <div class="col-md">
                   </div>
                 </div>
 
