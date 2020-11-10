@@ -35,13 +35,19 @@ def error_response(error, msg):
 class OdooAPI(http.Controller):
     @http.route('/auth_page', type='http', auth='user')
     def index(self, **kw):
-        return http.request.render("8x8-integration.auth_page")
+
+        test = "hello world"
+
+        return http.request.render("8x8-integration.auth_page", {'var' : test})
 
     @http.route(
         '/getsession/',
         type='http', auth='none', methods=["GET"], csrf=False)
     def getsession(self, **args):
         urlData = args["redirectUrl"] + '&code=' + request.session.sid
+
+
+
         return werkzeug.utils.redirect(urlData,301)
 
     @http.route(

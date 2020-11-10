@@ -9,6 +9,7 @@
                 <div class="row" style="padding-top:100px">
                   <div class="col-lg text-center">
                     <h1>Authorize 8x8?</h1>
+                    <p><t t-esc="var"/></p>
                   </div>
                 </div>
                 <div class="row" style="padding-top:15px">
