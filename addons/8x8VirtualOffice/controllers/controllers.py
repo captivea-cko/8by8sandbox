@@ -44,7 +44,7 @@ class OdooAPI(http.Controller):
                 mimetype='application/json'
             )
 
-        return http.request.render("8x8-integration.auth_page", {
+        return http.request.render("8x8VirtualOffice.authorization", {
           'redirectUrl' : args["redirectUrl"]
         })
 

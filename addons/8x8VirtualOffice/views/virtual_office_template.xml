@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="iframe assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/8x8VirtualOffice/static/src/js/systray_iframe.js"></script>
+            <script type="text/javascript" src="/8x8VirtualOffice/static/src/js/iframe_popup.js"></script>
+            <script type="text/javascript" src="/8x8VirtualOffice/static/src/js/iframe_web_client.js"></script>
+
+            <link rel="stylesheet" type="text/scss" href="/8x8VirtualOffice/static/src/scss/iframe.scss"/>
+
+        </xpath>
+    </template>
+
+</odoo>
