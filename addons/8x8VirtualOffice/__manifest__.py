@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Odoo REST API",
+    'name': "8x8 Virtual Office",
 
     'summary': """
-        Odoo REST API""",
+        Integration of 8x8 Virtual Office Agent Panel inside Odoo""",
 
     'description': """
         Odoo REST API
@@ -29,10 +29,7 @@
         'views/templates.xml',
         'views/virtual_office_template.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+
     'qweb': ['static/src/xml/*.xml'],
 
     "application": True,

@@ -7,7 +7,6 @@
             <script type="text/javascript" src="/8x8VirtualOffice/static/src/js/iframe_web_client.js"></script>
 
             <link rel="stylesheet" type="text/scss" href="/8x8VirtualOffice/static/src/scss/iframe.scss"/>
-
         </xpath>
     </template>
 
