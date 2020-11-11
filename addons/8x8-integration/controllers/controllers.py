@@ -33,22 +33,38 @@ def error_response(error, msg):
 
 
 class OdooAPI(http.Controller):
-    @http.route('/auth_page', type='http', auth='user')
-    def index(self, **kw):
+    @http.route(
+        '/getsession/',
+        type='http', auth='user', methods=["GET"], csrf=True)
+    def getsessionGet(self, **args):
+        if "redirectUrl" not in args:
+            return http.Response(
+                json.dumps("Bad request"),
+                status=400,
+                mimetype='application/json'
+            )
 
-        test = "hello world"
-
-        return http.request.render("8x8-integration.auth_page", {'var' : test})
+        return http.request.render("8x8-integration.auth_page", {
+          'redirectUrl' : args["redirectUrl"]
+        })
 
     @http.route(
         '/getsession/',
-        type='http', auth='none', methods=["GET"], csrf=False)
-    def getsession(self, **args):
-        urlData = args["redirectUrl"] + '&code=' + request.session.sid
+        type='http', auth='user', methods=["POST"], csrf=True)
+    def getsessionPost(self, **args):
+        if "redirect" not in args:
+            return http.Response(
+                json.dumps("Bad request"),
+                status=400,
+                mimetype='application/json'
+            )
 
+        if args["redirect"]:
+            urlData = args["redirect"] + '&code=' + request.session.sid
+        else:
+            urlData = '/'
 
-
-        return werkzeug.utils.redirect(urlData,301)
+        return werkzeug.utils.redirect(urlData, 301)
 
     @http.route(
         '/auth/',

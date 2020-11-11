@@ -3,41 +3,31 @@
         <template id="auth_page" name="Auth Page">
             <xpath expr="//head" position="inside">
                 <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+                <title>Allow access</title>
             </xpath>
-            <div class="container h-100">
+            
+            <div class="container h-100"> <!-- Container Start -->
 
-                <div class="row" style="padding-top:100px">
-                    <div class="col-lg text-center">
-                        <h1>Authorize 8x8?</h1>
-                        <p><t t-esc="var"/></p>
+                <div class="row h-100">
+                    <div class="col-md-4 offset-md-4 align-self-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Allow access?</h3>
 
-                        <form action="/getsession/" method="POST">
-                            <input name="testing" value="Hehe?" type="text"/>
-                            <button type="submit">Submit it!</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row" style="padding-top:15px">
-                    <div class="col-md">
-                    </div>
-                    <div class="col-md">
-                        <div class="row">
-                            <div class="col-sm text-center">
-                                <a href="/getsession/">
-                                    <button type="button" class="btn btn-primary p-3">Allow</button>
-                                </a>
-                            </div>
-                            <div class="col-sm text-center">
-                                <a href="#">
-                                    <button type="button" class="btn btn-secondary p-3">Deny</button>
-                                </a>
+                                <p class="card-text">Will you allow the: "<t t-esc="redirectUrl"/>" to access your Odoo user session?</p>
+
+                                <form t-attf-action="/getsession" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <button type="submit" name="redirect" t-att-value="redirectUrl" class="btn btn-md btn-block btn-success">Allow</button>
+                                    <button type="submit" name="redirect" value="" class="btn btn-md btn-block btn-danger">Deny</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md">
-                    </div>
                 </div>
-            </div>
+
+            </div> <!-- Container End -->
         </template>
     </data>
 </odoo>
