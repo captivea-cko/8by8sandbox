@@ -1,38 +1,43 @@
 <odoo>
     <data>
-         <template id="auth_page" name="Auth Page">
-           <xpath expr="//head" position="inside">
-             <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <template id="auth_page" name="Auth Page">
+            <xpath expr="//head" position="inside">
+                <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
             </xpath>
             <div class="container h-100">
 
                 <div class="row" style="padding-top:100px">
-                  <div class="col-lg text-center">
-                    <h1>Authorize 8x8?</h1>
-                    <p><t t-esc="var"/></p>
-                  </div>
+                    <div class="col-lg text-center">
+                        <h1>Authorize 8x8?</h1>
+                        <p><t t-esc="var"/></p>
+
+                        <form action="/getsession/" method="POST">
+                            <input name="testing" value="Hehe?" type="text"/>
+                            <button type="submit">Submit it!</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="row" style="padding-top:15px">
-                  <div class="col-md">
-                  </div>
-                  <div class="col-md">
-                    <div class="row">
-                      <div class="col-sm text-center">
-                        <a href="/getsession/">
-                        <button type="button" class="btn btn-primary p-3">Allow</button>
-                        </a>
-                      </div>
-                      <div class="col-sm text-center">
-                        <a href="#">
-                        <button type="button" class="btn btn-secondary p-3">Deny</button>
-                        </a>
-                      </div>
+                    <div class="col-md">
                     </div>
-                  </div>
-                  <div class="col-md">
-                  </div>
+                    <div class="col-md">
+                        <div class="row">
+                            <div class="col-sm text-center">
+                                <a href="/getsession/">
+                                    <button type="button" class="btn btn-primary p-3">Allow</button>
+                                </a>
+                            </div>
+                            <div class="col-sm text-center">
+                                <a href="#">
+                                    <button type="button" class="btn btn-secondary p-3">Deny</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                    </div>
                 </div>
             </div>
-         </template>
+        </template>
     </data>
 </odoo>
