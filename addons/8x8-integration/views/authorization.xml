@@ -1,11 +1,11 @@
 <odoo>
     <data>
-        <template id="auth_page" name="Auth Page">
+        <template id="authorization" name="Auth Page">
             <xpath expr="//head" position="inside">
                 <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
                 <title>Allow access</title>
             </xpath>
-            
+
             <div class="container h-100"> <!-- Container Start -->
 
                 <div class="row h-100">
