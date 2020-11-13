@@ -14,8 +14,12 @@
                             <div class="card-body">
                                 <h3 class="card-title">Allow access?</h3>
 
-                                <p class="card-text">Will you allow the: "<t t-esc="redirectUrl"/>" to access your Odoo user session?</p>
-
+                                <p class="card-text">Will you allow this application to access your Odoo user session?</p>
+                                <div class="alert alert-warning" role="alert">
+                                    <small>
+                                        <t t-esc="redirectUrl"/>
+                                    </small>
+                                </div>
                                 <form t-attf-action="/getsession" method="POST">
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 

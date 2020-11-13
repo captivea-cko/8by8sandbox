@@ -33,7 +33,7 @@ odoo.define('iframe_popup', function (require) {
       this.$el.find('iframe')
       .first()
       // TODO change to dynamic link settings
-      .attr('src', 'https://cloud8-staging.8x8.com/mapanelweb/public/index.html?companel=vo&env=oneinn&instanceUrl=' + realSession.origin)
+      .attr('src', 'https://cloud8-staging.8x8.com/mapanelweb/public/index.html?companel=vo&env=odoo&instanceUrl=' + realSession.origin)
 
       core.bus.on('toggle_iframe', this, this.toggleIframe);
 
